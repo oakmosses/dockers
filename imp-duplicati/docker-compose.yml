@@ -1,0 +1,17 @@
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Toronto
+      #- CLI_ARGS= #optional
+    volumes:
+      - /home/user/docker/stacks/duplicati/appdata/config:/config
+      - /home/user/hdd_backup:/backups
+      - /home/user:/source
+    ports:
+      - 8220:8200
+    restart: unless-stopped
+networks: {}
